@@ -5,12 +5,10 @@ en:
     required:
       text: 'required'
       mark: '*'
-      # You can uncomment the line below if you need to overwrite the whole required html.
-      # When using html, text and mark won't be used.
-      # html: '<abbr title="required">*</abbr>'
+
     error_notification:
       default_message: "Please review the problems below:"
-    # Examples
+
     labels:
       defaults:
         employee_id: 'Employee_id'
@@ -29,3 +27,8 @@ en:
     # prompts:
     #   defaults:
     #     age: 'Select your age'
+  helpers:
+    submit:
+      employee:
+        create: "Add %{model}"
+        update: "Save Changes"
