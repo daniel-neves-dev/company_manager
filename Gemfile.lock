@@ -234,6 +234,7 @@ DEPENDENCIES
   bootsnap
   debug
   error_highlight (>= 0.4.0)
+  i18n
   jbuilder
   jsbundling-rails
   pg (~> 1.1)

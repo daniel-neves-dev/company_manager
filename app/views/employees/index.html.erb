@@ -4,7 +4,7 @@
 
 <div id="employees">
   <% @employees.each do |employee| %>
-    <%= link_to employee.first_name, employee_path(employee) %>
+    <%= link_to employee.full_name, employee_path(employee) %>
 
   <% end %>
 </div>
