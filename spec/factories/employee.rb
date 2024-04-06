@@ -4,8 +4,8 @@ FactoryBot.define do
     sequence(:first_name) { |n| "John#{n}" }
     sequence(:last_name) { |n| "Doe#{n}" }
     sequence(:employee_id) { |n| "EMP#{n}" }
-    department { "Engineering" }
-    role { "Developer" }
-    status { "Active" }
+    department { 4 }
+    role { 3 }
+    status { 0 }
   end
 end
