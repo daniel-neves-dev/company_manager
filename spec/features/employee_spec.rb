@@ -15,6 +15,22 @@ RSpec.describe 'Employee navigation', type: :feature do
     end
   end
 
+  describe 'Employee new page', type: :feature, js: true do
+    it 'has a form to fill' do
+      visit new_employee_path
+
+      expect(page).to have_field('employee_first_name')
+      expect(page).to have_field('employee_last_name')
+      expect(page).to have_field('employee_employee_id')
+      expect(page).to have_field('employee_department')
+      expect(page).to have_field('employee_role')
+      expect(page).to have_field('employee_status')
+
+      click_on('Add Employee')
+      expect(page).to have_selector('input[type="submit"]')
+    end
+  end
+
   it 'show a list of employees names', type: :feature, js: true do
     FactoryBot.create(:employee, first_name: 'John', last_name: 'Doe', employee_id: 'EMP001')
     FactoryBot.create(:employee, first_name: 'Jane', last_name: 'Peg', employee_id: 'EMP002')

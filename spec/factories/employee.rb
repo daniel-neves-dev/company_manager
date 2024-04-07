@@ -1,4 +1,4 @@
-# spec/factories/employees.rb
+
 FactoryBot.define do
   factory :employee do
     sequence(:first_name) { |n| "John#{n}" }
