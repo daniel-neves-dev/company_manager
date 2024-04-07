@@ -16,7 +16,15 @@ RSpec.describe 'Employee navigation', type: :feature do
   end
 
   describe 'Employee new page', type: :feature, js: true do
+
+    it 'redirect to new page' do
+      visit employees_path
+      click_on('Add Employee')
+      expect(page).to have_selector('input[type="submit"]')
+    end
+
     it 'has a form to fill' do
+
       visit new_employee_path
 
       expect(page).to have_field('employee_first_name')
@@ -26,8 +34,36 @@ RSpec.describe 'Employee navigation', type: :feature do
       expect(page).to have_field('employee_role')
       expect(page).to have_field('employee_status')
 
-      click_on('Add Employee')
       expect(page).to have_selector('input[type="submit"]')
+    end
+
+    it 'creates an employee from the new form page' do
+      first_name = "John"
+      last_name = "Joe"
+      employee_id = "EMP001"
+      department = "Finance"
+      role = "Coordinator"
+      status = "Active"
+
+      visit new_employee_path
+
+      fill_in 'employee[first_name]', with: first_name
+      fill_in 'employee[last_name]', with: last_name
+      fill_in 'employee[employee_id]', with: employee_id
+
+      select department, from: 'employee[department]'
+      select role, from: 'employee[role]'
+      select status, from: 'employee[status]'
+
+      click_button('Add Employee')
+
+
+      expect(page).to have_content(first_name)
+      expect(page).to have_content(last_name)
+      expect(page).to have_content(employee_id)
+      expect(page).to have_content('finance')
+      expect(page).to have_content('coordinator')
+      expect(page).to have_content('active')
     end
   end
 
@@ -43,7 +79,7 @@ RSpec.describe 'Employee navigation', type: :feature do
 
   describe 'Employee show page', type: :feature, js: true do
     it 'show a employees details' do
-      employee = FactoryBot.create(:employee, first_name: 'John', last_name: 'Doe', employee_id: 'EMP001', department:'finance', role:'analyst', status:'active')
+      employee = FactoryBot.create(:employee, first_name: 'John', last_name: 'Doe', employee_id: 'EMP001', department: 'finance', role: 'analyst', status: 'active')
 
       visit employee_path(employee)
 
@@ -53,6 +89,28 @@ RSpec.describe 'Employee navigation', type: :feature do
       expect(page).to have_content('finance')
       expect(page).to have_content('analyst')
       expect(page).to have_content('active')
+    end
+  end
+
+  describe 'Employee edit page', type: :feature, js: true do
+    it 'redirect to edit page' do
+      visit employee_path(employee)
+      click_on('Edit')
+      expect(page).to have_selector('input[type="submit"]')
+    end
+
+    it 'has a form to edit' do
+
+      visit new_employee_path
+
+      expect(page).to have_field('employee_first_name')
+      expect(page).to have_field('employee_last_name')
+      expect(page).to have_field('employee_employee_id')
+      expect(page).to have_field('employee_department')
+      expect(page).to have_field('employee_role')
+      expect(page).to have_field('employee_status')
+
+      expect(page).to have_selector('input[type="submit"]')
     end
   end
 end
