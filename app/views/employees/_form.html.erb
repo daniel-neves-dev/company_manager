@@ -7,9 +7,9 @@
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :employee_id %>
-    <%= f.input :department, collection: Employee.departments.keys.map { |department| [department.to_s.humanize, department] }, prompt: "Select a Department" %>
-    <%= f.input :role, collection: Employee.roles.keys.map { |role| [role.to_s.humanize, role] }, prompt: "Select a Role" %>
-    <%= f.input :status, collection: Employee.statuses.keys.map { |status| [status.to_s.humanize, status] }, prompt: "Select a Status" %>
+    <%= f.input :department, collection: Employee.departments.keys.map { |department| [I18n.t("activerecord.attributes.employee.departments.#{department}"), department] }, prompt: I18n.t(:'labels.prompts.defaults.department') %>
+    <%= f.input :role, collection: Employee.roles.keys.map { |role| [I18n.t("activerecord.attributes.employee.roles.#{role}"), role] }, prompt: I18n.t(:'labels.prompts.defaults.role') %>
+    <%= f.input :status, collection: Employee.statuses.keys.map { |status| [I18n.t("activerecord.attributes.employee.statuses.#{status}"), status] }, prompt: I18n.t(:'labels.prompts.defaults.status') %>
   </div>
 
   <div class="form-actions">

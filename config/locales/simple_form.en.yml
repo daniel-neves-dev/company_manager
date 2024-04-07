@@ -6,9 +6,6 @@ en:
       text: 'required'
       mark: '*'
 
-    error_notification:
-      default_message: "Please review the problems below:"
-
     labels:
       defaults:
         employee_id: 'Employee_id'
@@ -32,3 +29,12 @@ en:
       employee:
         create: "Add %{model}"
         update: "Save Changes"
+  labels:
+    prompts:
+      defaults:
+        department: 'Select a department'
+        role: 'Select a role'
+        status: 'Select a status'
+
+    error_notification:
+      default_message: "Please review the problems below:"

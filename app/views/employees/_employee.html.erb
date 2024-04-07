@@ -1,32 +1,32 @@
 <div id="<%= dom_id employee %>">
   <p>
-    <strong>First name:</strong>
+    <strong><%= I18n.t(:first_name) %>:</strong>
     <%= (employee.first_name).capitalize %>
   </p>
 
   <p>
-    <strong>Last name:</strong>
+    <strong><%= I18n.t(:last_name) %>:</strong>
     <%= (employee.last_name).capitalize %>
   </p>
 
   <p>
-    <strong>EmployeeID:</strong>
+    <strong><%= I18n.t(:employee_id) %>:</strong>
     <%= employee.employee_id %>
   </p>
 
   <p>
-    <strong>Department:</strong>
-    <%= (employee.department).capitalize %>
+    <strong><%= I18n.t(:department) %>:</strong>
+    <%= I18n.t("activerecord.attributes.employee.departments.#{employee.department}") %>
   </p>
 
   <p>
-    <strong>Role:</strong>
-    <%= (employee.role).capitalize %>
+    <strong><%= I18n.t(:role) %>:</strong>
+    <%= I18n.t("activerecord.attributes.employee.roles.#{employee.role}") %>
   </p>
 
   <p>
-    <strong>Status:</strong>
-    <%= (employee.status).capitalize %>
+    <strong><%= I18n.t(:status) %>:</strong>
+    <%= I18n.t("activerecord.attributes.employee.statuses.#{employee.status}") %>
   </p>
 
 </div>
