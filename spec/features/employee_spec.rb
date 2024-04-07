@@ -3,8 +3,13 @@ require 'rails_helper'
 RSpec.describe 'Employee navigation', type: :feature do
   let(:employee) { FactoryBot.create(:employee) }
 
-  describe 'Employee index page' do
-    it 'Display "Employees" title', type: :feature, js: true do
+  describe 'Employee index page', type: :feature, js: true do
+    it 'Display "Employees" title' do
+      visit employees_path
+      expect(page).to have_content("Add Employee")
+    end
+
+    it 'has links to add new employee' do
       visit employees_path
       expect(page).to have_content("Employees")
     end
@@ -21,7 +26,7 @@ RSpec.describe 'Employee navigation', type: :feature do
   end
 
   describe 'Employee show page', type: :feature, js: true do
-    it 'show a employees details',type: :feature do
+    it 'show a employees details' do
       employee = FactoryBot.create(:employee, first_name: 'John', last_name: 'Doe', employee_id: 'EMP001', department:'finance', role:'analyst', status:'active')
 
       visit employee_path(employee)
