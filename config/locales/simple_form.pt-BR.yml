@@ -1,0 +1,49 @@
+pt-BR:
+  simple_form:
+    "yes": 'Sim'
+    "no": 'Não'
+    required:
+      text: 'obrigatório'
+      mark: '*'
+
+    error_notification:
+      default_message: "Por favor reveja os problemas abaixo:"
+
+    #labels:
+    #  defaults:
+    #    employee_id: 'ID Funcionário'
+    #   user:
+    #     new:
+    #       email: 'E-mail to sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+    # include_blanks:
+    #   defaults:
+    #     age: 'Rather not say'
+    # prompts:
+    #   defaults:
+    #     age: 'Select your age'
+  helpers:
+    submit:
+      employee:
+        create: "Adicionar %{model}"
+        update: "Salvar Mudanças"
+  activerecord:
+    models:
+      employee: "Funcionário"
+    attributes:
+      employee:
+        first_name: "Nome"
+        last_name: "Sobrenome"
+        employee_id: "ID do Funcionário"
+        department: "Departamento"
+        role: "Cargo"
+        status: "Situação Atual"
+  labels:
+    prompts:
+       defaults:
+         department: 'Selecione o departamento'

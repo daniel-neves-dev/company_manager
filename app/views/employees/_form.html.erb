@@ -7,7 +7,7 @@
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :employee_id %>
-    <%= f.input :department, collection: Employee.departments.keys.map { |department| [department.to_s.humanize, department] }, prompt: "Select a Department" %>
+    <%= f.input :department, collection: Employee.departments.keys.map { |department| [department.to_s.humanize, department] }, prompt: t(:'labels.prompts.defaults.department') %>
     <%= f.input :role, collection: Employee.roles.keys.map { |role| [role.to_s.humanize, role] }, prompt: "Select a Role" %>
     <%= f.input :status, collection: Employee.statuses.keys.map { |status| [status.to_s.humanize, status] }, prompt: "Select a Status" %>
   </div>

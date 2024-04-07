@@ -20,7 +20,7 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
-        format.html { redirect_to employee_url(@employee), notice: "Employee was successfully created." }
+        format.html { redirect_to employee_url(@employee), notice: t(:create_employee) }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
