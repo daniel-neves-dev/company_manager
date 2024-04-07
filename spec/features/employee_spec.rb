@@ -1,17 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe 'Employee navigation', type: :feature do
-  let(:employee) { FactoryBot.create(:employee) }
+  let!(:employee) { FactoryBot.create(:employee) }
+
 
   describe 'Employee index page', type: :feature, js: true do
-    it 'Display "Employees" title' do
+    before do
       visit employees_path
+    end
+
+    it 'Display "Employees" title' do
       expect(page).to have_content("Add Employee")
     end
 
-    it 'has links to add new employee' do
-      visit employees_path
-      expect(page).to have_content("Employees")
+    it 'has a link to add new employee' do
+      expect(page).to have_link("Add Employee")
     end
   end
 
@@ -19,51 +22,18 @@ RSpec.describe 'Employee navigation', type: :feature do
 
     it 'redirect to new page' do
       visit employees_path
-      click_on('Add Employee')
+      click_link('Add Employee')
       expect(page).to have_selector('input[type="submit"]')
     end
 
-    it 'has a form to fill' do
-
+    it 'creates an employee from the new form page', type: :feature, js: true do
       visit new_employee_path
 
-      expect(page).to have_field('employee_first_name')
-      expect(page).to have_field('employee_last_name')
-      expect(page).to have_field('employee_employee_id')
-      expect(page).to have_field('employee_department')
-      expect(page).to have_field('employee_role')
-      expect(page).to have_field('employee_status')
-
-      expect(page).to have_selector('input[type="submit"]')
-    end
-
-    it 'creates an employee from the new form page' do
-      first_name = "John"
-      last_name = "Joe"
-      employee_id = "EMP001"
-      department = "Finance"
-      role = "Coordinator"
-      status = "Active"
-
-      visit new_employee_path
-
-      fill_in 'employee[first_name]', with: first_name
-      fill_in 'employee[last_name]', with: last_name
-      fill_in 'employee[employee_id]', with: employee_id
-
-      select department, from: 'employee[department]'
-      select role, from: 'employee[role]'
-      select status, from: 'employee[status]'
-
+      fill_employee_form_with('John', 'Joe', 'EMP001', 'Finance', 'Coordinator', 'Active')
       click_button('Add Employee')
-
-      expect(page).to have_content(first_name)
-      expect(page).to have_content(last_name)
-      expect(page).to have_content(employee_id)
-      expect(page).to have_content(department)
-      expect(page).to have_content(role)
-      expect(page).to have_content(status)
+      expect_employee_to_be_shown('John', 'Joe', 'EMP001', 'Finance', 'Coordinator', 'Active')
     end
+
   end
 
   it 'show a list of employees names', type: :feature, js: true do
@@ -78,7 +48,7 @@ RSpec.describe 'Employee navigation', type: :feature do
 
   describe 'Employee show page', type: :feature, js: true do
     it 'show a employees details' do
-      employee = FactoryBot.create(:employee, first_name: 'John', last_name: 'Doe', employee_id: 'EMP001', department: 'finance', role: 'analyst', status: 'active')
+      employee = FactoryBot.create(:employee, first_name: 'John', last_name: 'Doe', employee_id: 'EMP001', department: 'Finance', role: 'Analyst', status: 'Active')
 
       visit employee_path(employee)
 
@@ -139,5 +109,35 @@ RSpec.describe 'Employee navigation', type: :feature do
       expect(page).to have_content(role)
       expect(page).to have_content(status)
     end
+  end
+
+  describe 'delete', type: :feature, js: true do
+
+    it 'deletes the employee' do
+      visit employee_path(employee)
+      page.accept_confirm do
+        click_on('Delete', match: :first)
+      end
+      expect(page).not_to have_content(employee.first_name)
+      expect(Employee.exists?(employee.id)).to be_falsey
+    end
+  end
+
+  def fill_employee_form_with(first_name, last_name, employee_id, department, role, status)
+    fill_in 'employee[first_name]', with: first_name
+    fill_in 'employee[last_name]', with: last_name
+    fill_in 'employee[employee_id]', with: employee_id
+    select department, from: 'employee[department]'
+    select role, from: 'employee[role]'
+    select status, from: 'employee[status]'
+  end
+
+  def expect_employee_to_be_shown(first_name, last_name, employee_id, department, role, status)
+    expect(page).to have_content(first_name)
+    expect(page).to have_content(last_name)
+    expect(page).to have_content(employee_id)
+    expect(page).to have_content(department)
+    expect(page).to have_content(role)
+    expect(page).to have_content(status)
   end
 end

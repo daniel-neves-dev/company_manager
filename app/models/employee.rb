@@ -1,6 +1,6 @@
 class Employee < ApplicationRecord
 
-  validates :first_name, :last_name, presence: true
+  validates :first_name, :last_name, :department, :role, :status, presence: true
 
   enum department: {human_resource:0, information_technology:1, finance:2, sales:3, operations:4}
   enum role: {manager:0, senior_specialist:1, analyst:2, coordinator:3, engineer:4}
