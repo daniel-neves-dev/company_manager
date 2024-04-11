@@ -53,4 +53,4 @@ en:
             status:
               blank: "Please, select a status"
             email:
-              email_format: "Eamil format is invalid"
+              email_format: "Email format is invalid"
