@@ -52,3 +52,5 @@ pt-BR:
               blank: "Por favor, selecione o cargo"
             status:
               blank: "Por favor, selecione o estatus atual"
+            email:
+              email_format: "Formato de email invalido"

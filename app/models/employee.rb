@@ -8,6 +8,11 @@ class Employee < ApplicationRecord
   enum role: {manager:0, senior_specialist:1, analyst:2, coordinator:3, engineer:4}
   enum status: {active:0, on_leave:1, resigned:2, retired:3, under_review:4}
 
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  validates :email, uniqueness: { case_sensitive: false },
+            format: { with: VALID_EMAIL_REGEX, message: :email_format }
+
   def full_name
     first_name.capitalize + " " + last_name.capitalize
   end
