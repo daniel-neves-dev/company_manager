@@ -1,5 +1,6 @@
 class Employee < ApplicationRecord
   before_create :generate_employee_id
+  after_initialize :set_default_status, if: :new_record?
 
   validates :first_name, :last_name, :department, :role, :status, presence: true
 
@@ -12,6 +13,9 @@ class Employee < ApplicationRecord
   end
 
   private
+  def set_default_status
+    self.status ||= :active
+  end
 
   def generate_employee_id
     loop do
