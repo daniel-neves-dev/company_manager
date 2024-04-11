@@ -1,4 +1,5 @@
 class Employee < ApplicationRecord
+  before_create :generate_employee_id
 
   validates :first_name, :last_name, :department, :role, :status, presence: true
 
@@ -8,5 +9,15 @@ class Employee < ApplicationRecord
 
   def full_name
     first_name.capitalize + " " + last_name.capitalize
+  end
+
+  private
+
+  def generate_employee_id
+    loop do
+      random_number = rand(1000..9999)
+      self.employee_id = "#{first_name[0]}#{last_name[0]}#{random_number}"
+      break unless Employee.exists?(employee_id: employee_id)
+    end
   end
 end
