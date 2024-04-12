@@ -5,7 +5,7 @@ RSpec.describe 'Employee navigation', type: :feature do
 
   describe 'Employee index page', type: :feature, js: true do
     before do
-      visit employees_path
+      visit employees_path(locale: I18n.locale)
     end
 
     it 'Display "Employees" title' do
@@ -23,46 +23,46 @@ RSpec.describe 'Employee navigation', type: :feature do
 
   describe 'Employee new page', type: :feature, js: true do
     it 'redirect to new page' do
-      visit employees_path
-      click_link('Add Employee')
+      visit employees_path(locale: I18n.locale)
+      click_link I18n.t('add_employee')
       expect(page).to have_selector('input[type="submit"]')
     end
 
     it 'creates an employee from the new form page', type: :feature, js: true do
-      visit new_employee_path
+      visit new_employee_path(locale: I18n.locale)
 
-      fill_employee_form_with('John', 'Joe', 'EMP001', 'Finance', 'Coordinator', 'Active')
+      fill_employee_form_with('John', 'Joe', 'Finance', 'Coordinator', 'john.doe@example.com')
       click_button('Add Employee')
-      expect_employee_to_be_shown('John', 'Joe', 'EMP001', 'Finance', 'Coordinator', 'Active')
+
+      expect(page).to have_content(/[A-Z]{2}\d{4}/)
+
+      expect_employee_to_be_shown('John', 'Joe', 'Finance', 'Coordinator', 'john.doe@example.com', 'Active')
     end
+
   end
 
   describe 'Employee show page', type: :feature, js: true do
-    it 'shows employee details' do
-      visit employee_path(employee)
+    before { visit employee_path(employee, locale: I18n.locale) }
 
-      expect(page).to have_content(employee.first_name)
-      expect(page).to have_content(employee.last_name)
-      expect(page).to have_content(employee.employee_id)
-      expect(page).to have_content('Finance')
-      expect(page).to have_content('Coordinator')
-      expect(page).to have_content('Active')
-      end
+    it 'shows employee details' do
+      expect_employee_to_be_shown(employee.first_name, employee.last_name, employee.employee_id, 'Finance', 'Coordinator', employee.email, 'Active')
+    end
   end
 
   describe 'Employee edit page', type: :feature, js: true do
+    let!(:employee) { FactoryBot.create(:employee, first_name: "John", email: "valid@example.com") }
+
     it 'updates employee information' do
-      visit employee_path(employee)
-      click_on('Edit')
-      fill_employee_form_with('Jane', 'Doe', 'EMP002', 'Finance', 'Manager', 'Retired')
+      visit edit_employee_path(employee, locale: I18n.locale)
+      fill_employee_form_with('Jane', 'Doe', 'Finance', 'Manager', 'jane.doe@example.com', 'Active')
       click_button('Save Changes')
-      expect_employee_to_be_shown('Jane', 'Doe', 'EMP002', 'Finance', 'Manager', 'Retired')
+      expect_employee_to_be_shown('Jane', 'Doe', 'Finance', 'Manager', 'jane.doe@example.com', 'Active')
     end
   end
 
   describe 'delete', type: :feature, js: true do
     it 'deletes the employee'do
-      visit employee_path(employee)
+      visit employee_path(employee, locale: I18n.locale)
       page.accept_confirm do
         click_on('Delete', match: :first)
       end
@@ -71,22 +71,23 @@ RSpec.describe 'Employee navigation', type: :feature do
     end
   end
 
-  def fill_employee_form_with(first_name, last_name, employee_id, department, role, status)
-    fill_in 'employee[first_name]', with: first_name
-    fill_in 'employee[last_name]', with: last_name
-    fill_in 'employee[employee_id]', with: employee_id
-    select department, from: 'employee[department]'
-    select role, from: 'employee[role]'
-    select status, from: 'employee[status]'
+  def fill_employee_form_with(first_name, last_name, department, role, email, status = nil)
+    fill_in 'employee_first_name', with: first_name
+    fill_in 'employee_last_name', with: last_name
+    select department, from: 'employee_department'
+    select role, from: 'employee_role'
+    fill_in 'employee_email', with: email
+    select status, from: 'employee_status' if status.present?
   end
 
-  def expect_employee_to_be_shown(first_name, last_name, employee_id, department, role, status)
+  def expect_employee_to_be_shown(first_name, last_name, department, role, email, status, employee_id = nil)
     expect(page).to have_content(first_name)
     expect(page).to have_content(last_name)
-    expect(page).to have_content(employee_id)
     expect(page).to have_content(department)
     expect(page).to have_content(role)
+    expect(page).to have_content(email)
     expect(page).to have_content(status)
+    expect(page).to have_content(employee_id) if employee_id.present?
   end
 
 end

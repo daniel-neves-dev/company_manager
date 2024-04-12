@@ -6,6 +6,7 @@ FactoryBot.define do
     sequence(:employee_id) { |n| "EMP#{n}" }
     department { :finance }
     role { :coordinator }
+    sequence(:email) { |n| "john.doe#{n}@example.com" }
     status { :active }
   end
 end
