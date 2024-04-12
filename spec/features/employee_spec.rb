@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Employee navigation', type: :feature do
   let!(:employee) { FactoryBot.create(:employee) }
 
-
   describe 'Employee index page', type: :feature, js: true do
     before do
       visit employees_path
@@ -62,7 +61,7 @@ RSpec.describe 'Employee navigation', type: :feature do
   end
 
   describe 'delete', type: :feature, js: true do
-    it 'deletes the employee' do
+    it 'deletes the employee'do
       visit employee_path(employee)
       page.accept_confirm do
         click_on('Delete', match: :first)

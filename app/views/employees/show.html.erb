@@ -3,8 +3,8 @@
 <%= render @employee %>
 
 <div>
-  <%= link_to "Edit", edit_employee_path(@employee) %> |
-  <%= link_to "Back", employees_path %>
+  <%= link_to I18n.t(:edit), edit_employee_path(@employee) %> |
+  <%= link_to I18n.t(:back), employees_path %>
 
-  <%= button_to "Delete", @employee, method: :delete,data: { turbo_confirm: "Are you sure?" } %>
+  <%= button_to I18n.t(:delete), @employee, method: :delete,data: { turbo_confirm: I18n.t(:confirmation_delete) } %>
 </div>

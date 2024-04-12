@@ -1,9 +1,9 @@
-<h1>New employee</h1>
+<h1><%= I18n.t(:new_employee) %></h1>
 
 <%= render "form", employee: @employee %>
 
 <br>
 
 <div>
-  <%= link_to "Back to employees", employees_path %>
+  <%= link_to I18n.t(:back), employees_path %>
 </div>

@@ -1,0 +1,54 @@
+pt-BR:
+  create_employee: "Funcionário salvo com sucesso!"
+  update_employee: "Funcionário atualizado com sucesso!"
+  delete_employee: "Funcionário deletatdo com sucesso!"
+  employees: "Funcionários"
+  add_employee: "Adicionar Funcionário"
+  new_employee: "Novo Funcionário"
+  edit_employee: "Editar Funcionário"
+  first_name: 'Nome'
+  last_name: 'Sobrenome'
+  employee_id: 'Número ID do funcionário'
+  department: 'Departamento'
+  role: 'Cargo'
+  status: 'Estatus'
+  back: 'Voltar'
+  edit: 'Editar'
+  delete: 'Deletar'
+  confirmation_delete: 'Deletar funcionário?'
+
+  activerecord:
+    attributes:
+      employee:
+        departments:
+          human_resource: "Recursos Humanos"
+          information_technology: "Tecnologia da Informação"
+          finance: "Finanças"
+          sales: "Vendas"
+          operations: "Operações"
+        roles:
+          manager: "Gerente"
+          senior_specialist: "Especialista Sênior"
+          analyst: "Analista"
+          coordinator: "Coordenador"
+          engineer: "Engenheiro"
+        statuses:
+          active: "Ativo"
+          on_leave: "Em Licença"
+          resigned: "Demitido"
+          retired: "Aposentado"
+          under_review: "Em Revisão"
+    errors:
+      models:
+        employee:
+          attributes:
+            first_name:
+              blank: "Por favor, digite o primeiro nome"
+            last_name:
+              blank: "Por favor, digite o sobrenome"
+            department:
+              blank: "Por favor, selecoine o departamento "
+            role:
+              blank: "Por favor, selecione o cargo"
+            status:
+              blank: "Por favor, selecione o estatus atual"
