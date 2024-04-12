@@ -52,3 +52,5 @@ en:
               blank: "Please, select a role"
             status:
               blank: "Please, select a status"
+            email:
+              email_format: "Email format is invalid"
