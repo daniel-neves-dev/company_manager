@@ -4,7 +4,15 @@
 
 <div id="employees">
   <% @employees.each do |employee| %>
+
+    <% if employee.photo.attached? %>
+      <%= image_tag employee.photo, size: "150x150" %>
+    <% else %>
+      <p>No photo available.</p>
+    <% end %>
+
     <%= link_to employee.full_name, employee_path(employee) %>
+    <%= employee.role %>
 
   <% end %>
 </div>

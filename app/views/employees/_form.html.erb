@@ -4,6 +4,8 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
+    <%= f.input :photo, as: :file, input_html: { id: 'photo-input', onchange: 'previewImage()' } %>
+    <div id="photo-preview"></div>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :department, collection: Employee.departments.keys.map { |department| [I18n.t("activerecord.attributes.employee.departments.#{department}"), department] }, prompt: I18n.t(:'labels.prompts.defaults.department') %>

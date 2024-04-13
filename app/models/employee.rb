@@ -1,7 +1,8 @@
 class Employee < ApplicationRecord
   before_create :generate_employee_id
-  after_initialize :set_default_status, if: :new_record?
+  before_validation :set_default_status, if: :new_record?
 
+  has_one_attached :photo
   validates :first_name, :last_name, :department, :role, :status, presence: true
 
   enum department: {human_resource:0, information_technology:1, finance:2, sales:3, operations:4}
@@ -10,7 +11,7 @@ class Employee < ApplicationRecord
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validates :email, uniqueness: { case_sensitive: false },
+  validates :email, allow_blank: true, uniqueness: { case_sensitive: false },
             format: { with: VALID_EMAIL_REGEX, message: :email_format }
 
   def full_name
@@ -25,7 +26,7 @@ class Employee < ApplicationRecord
   def generate_employee_id
     loop do
       random_number = rand(1000..9999)
-      self.employee_id = "#{first_name[0]}#{last_name[0]}#{random_number}"
+      self.employee_id = "#{first_name[0].upcase}#{last_name[0].upcase}#{random_number}"
       break unless Employee.exists?(employee_id: employee_id)
     end
   end

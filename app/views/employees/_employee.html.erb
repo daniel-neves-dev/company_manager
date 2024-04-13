@@ -1,4 +1,11 @@
 <div id="<%= dom_id employee %>">
+
+  <% if @employee.photo.attached? %>
+    <%= image_tag @employee.photo, size: "150x150" %>
+  <% else %>
+    <p>No photo available.</p>
+  <% end %>
+
   <p>
     <strong><%= I18n.t(:first_name) %>:</strong>
     <%= (employee.first_name).capitalize %>
