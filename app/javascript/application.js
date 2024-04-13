@@ -4,3 +4,4 @@ import "./controllers"
 //= require jquery
 //= require rails-ujs
 //= require_tree .
+import "flowbite/dist/flowbite.turbo.js";
