@@ -1,6 +1,7 @@
 class Employee < ApplicationRecord
   before_create :generate_employee_id
   after_initialize :set_default_status, if: :new_record?
+  before_validation :normalize_email
 
   has_one_attached :photo
   validates :first_name, :last_name, :department, :role, :status, presence: true

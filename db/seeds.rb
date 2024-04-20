@@ -1,9 +1,35 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+# db/seeds.rb
+
+male_names = %w[James John Robert Michael William Peter]
+male_last_names = %w[Andrade Silva Rodrigues Miller Hernandes Walker]
+female_names = %w[Mary Patricia Jennifer Linda Elizabeth Luiza]
+female_last_names = %w[Andrade Silva Rodrigues Miller Hernandes Walker Watson]
+
+departments = Employee.departments.keys
+roles = Employee.roles.keys
+
+# Create male employees
+1.upto(7) do |i|
+  Employee.create!(
+    first_name: male_names.sample,
+    last_name: male_last_names.sample,
+    department: departments.sample,
+    role: roles.sample,
+    status: :active,
+    email: Faker::Internet.email,
+    photo: File.open(Rails.root.join("app/assets/images/male#{i}.jpg"))
+  )
+end
+
+# Create female employees
+1.upto(8) do |i|
+  Employee.create!(
+    first_name: female_names.sample,
+    last_name: female_last_names.sample,
+    department: departments.sample,
+    role: roles.sample,
+    status: :active,
+    email: Faker::Internet.email,
+    photo: File.open(Rails.root.join("app/assets/images/female#{i}.jpg"))
+  )
+end

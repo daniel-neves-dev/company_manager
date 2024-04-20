@@ -4,8 +4,11 @@
 
 <div id="employees">
   <% @employees.each do |employee| %>
+    <% if employee.photo.attached? %>
+      <%= image_tag(employee.photo, alt: employee.full_name, class: "employee-photo") %>
+    <% end %>
     <%= link_to employee.full_name, employee_path(employee) %>
-
+    <%= employee.department %>
   <% end %>
 </div>
 
