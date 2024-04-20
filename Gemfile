@@ -72,3 +72,4 @@ end
 gem 'simple_form'
 gem 'i18n'
 gem 'mini_magick'
+gem "tailwindcss-rails", "~> 2.4"
