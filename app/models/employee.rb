@@ -2,6 +2,7 @@ class Employee < ApplicationRecord
   before_create :generate_employee_id
   after_initialize :set_default_status, if: :new_record?
 
+  has_one_attached :photo
   validates :first_name, :last_name, :department, :role, :status, presence: true
 
   enum department: {human_resource:0, information_technology:1, finance:2, sales:3, operations:4}
