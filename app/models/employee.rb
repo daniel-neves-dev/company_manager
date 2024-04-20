@@ -11,7 +11,7 @@ class Employee < ApplicationRecord
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validates :email, uniqueness: { case_sensitive: false },
+  validates :email, allow_blank: true, allow_nil: true, uniqueness: { case_sensitive: false },
             format: { with: VALID_EMAIL_REGEX, message: :email_format }
 
   def full_name
@@ -19,6 +19,9 @@ class Employee < ApplicationRecord
   end
 
   private
+  def normalize_email
+    self.email = email.blank? ? nil : email
+  end
   def set_default_status
     self.status ||= :active
   end
