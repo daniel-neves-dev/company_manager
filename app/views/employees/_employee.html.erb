@@ -1,4 +1,9 @@
 <div id="<%= dom_id employee %>">
+
+  <p>
+    <%= image_tag(employee.photo) %>
+  </p>
+
   <p>
     <strong><%= I18n.t(:first_name) %>:</strong>
     <%= (employee.first_name).capitalize %>
