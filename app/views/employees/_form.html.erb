@@ -42,6 +42,18 @@
                   input_html: { class: "form-input bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-lg" },
                   wrapper: false %>
     </div>
+      <div>
+        <% if @employee.persisted? %>
+          <div class="grid grid-cols-1 gap-4 mb-4">
+            <%= f.input :status,
+                        collection: Employee.statuses.keys.map { |status| [I18n.t("activerecord.attributes.employee.statuses.#{status}"), status] },
+                        label_html: { class: "text-gray-300 mb-2" },
+                        input_html: { class: "form-select bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-lg" },
+                        wrapper: false,
+                        prompt: I18n.t(:'labels.prompts.defaults.status') %>
+          </div>
+      </div>
+    <% end %>
 
     <div class="mt-6">
       <label class="block text-gray-300 mb-2">Photo</label>
