@@ -8,6 +8,8 @@ class EmployeesController < ApplicationController
 
 
   def show
+  rescue ActiveRecord::RecordNotFound
+    redirect_to employees_path, alert: "Employee not found."
   end
 
   def new
