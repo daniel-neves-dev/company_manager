@@ -1,9 +1,10 @@
-<h1><%= I18n.t(:edit_employee) %></h1>
-
-<%= render "form", employee: @employee %>
-
-<br>
-
-<div>
-  <%= link_to I18n.t(:back), employees_path %>
+<div class="flex justify-center items-center h-screen max-w-2xl mx-auto ">
+  <div class="w-full ">
+    <h1><%= I18n.t(:edit_employee) %></h1>
+    <%= render "form", employee: @employee %>
+    <br>
+    <div>
+      <%= link_to I18n.t(:back), employees_path %>
+    </div>
+  </div>
 </div>

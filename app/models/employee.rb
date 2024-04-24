@@ -15,6 +15,15 @@ class Employee < ApplicationRecord
   validates :email, allow_blank: true, allow_nil: true, uniqueness: { case_sensitive: false },
             format: { with: VALID_EMAIL_REGEX, message: :email_format }
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[department email first_name last_name role]
+  end
+
+  # Optionally, ensure associations are not searchable unless needed
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
+
   def full_name
     first_name.capitalize + " " + last_name.capitalize
   end

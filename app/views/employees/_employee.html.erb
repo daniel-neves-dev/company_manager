@@ -1,7 +1,9 @@
 <div id="<%= dom_id employee %>">
 
   <p>
-    <%= image_tag(employee.photo) %>
+    <% if employee&.persisted? %>
+      <%= image_tag(employee.photo) if employee.photo.attached? %>
+    <% end %>
   </p>
 
   <p>
