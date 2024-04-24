@@ -10,6 +10,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      width: {
+        '480': '480px',
+      },
+      height: {
+        '640': '640px',
+      },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
