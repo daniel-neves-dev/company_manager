@@ -1,44 +1,44 @@
-<div id="<%= dom_id employee %>">
+<!--<div id="<%#= dom_id employee %>">-->
 
-  <p>
-    <% if employee&.persisted? %>
-      <%= image_tag(employee.photo) if employee.photo.attached? %>
-    <% end %>
-  </p>
+<!--  <p>-->
+    <%# if employee&.persisted? %>
+      <%#= image_tag(employee.photo) if employee.photo.attached? %>
+    <%# end %>
+<!--  </p>-->
 
-  <p>
-    <strong><%= I18n.t(:first_name) %>:</strong>
-    <%= (employee.first_name).capitalize %>
-  </p>
+<!--  <p>-->
+<!--    <strong><%#= I18n.t(:first_name) %>:</strong>-->
+    <%#= (employee.first_name).capitalize %>
+<!--  </p>-->
 
-  <p>
-    <strong><%= I18n.t(:last_name) %>:</strong>
-    <%= (employee.last_name).capitalize %>
-  </p>
+<!--  <p>-->
+<!--    <strong><%#= I18n.t(:last_name) %>:</strong>-->
+    <%#= (employee.last_name).capitalize %>
+<!--  </p>-->
 
-  <p>
-    <strong><%= I18n.t(:employee_id) %>:</strong>
-    <%= employee.employee_id %>
-  </p>
+<!--  <p>-->
+<!--    <strong><%#= I18n.t(:employee_id) %>:</strong>-->
+    <%#= employee.employee_id %>
+<!--  </p>-->
 
-  <p>
-    <strong><%= I18n.t(:department) %>:</strong>
-    <%= I18n.t("activerecord.attributes.employee.departments.#{employee.department}") %>
-  </p>
+<!--  <p>-->
+<!--    <strong><%#= I18n.t(:department) %>:</strong>-->
+    <%#= I18n.t("activerecord.attributes.employee.departments.#{employee.department}") %>
+<!--  </p>-->
 
-  <p>
-    <strong><%= I18n.t(:role) %>:</strong>
-    <%= I18n.t("activerecord.attributes.employee.roles.#{employee.role}") %>
-  </p>
+<!--  <p>-->
+<!--    <strong><%#= I18n.t(:role) %>:</strong>-->
+    <%#= I18n.t("activerecord.attributes.employee.roles.#{employee.role}") %>
+<!--  </p>-->
 
-  <p>
-    <strong>Email:</strong>
-    <%= employee.email %>
-  </p>
+<!--  <p>-->
+<!--    <strong>Email:</strong>-->
+    <%#= employee.email %>
+<!--  </p>-->
 
-  <p>
-    <strong><%= I18n.t(:status) %>:</strong>
-    <%= I18n.t("activerecord.attributes.employee.statuses.#{employee.status}") %>
-  </p>
+<!--  <p>-->
+<!--    <strong><%#= I18n.t(:status) %>:</strong>-->
+    <%#= I18n.t("activerecord.attributes.employee.statuses.#{employee.status}") %>
+<!--  </p>-->
 
-</div>
+<!--</div>-->

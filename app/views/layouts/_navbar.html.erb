@@ -1,45 +1,52 @@
-<nav class="border-gray-200 bg-gray-800">
-  <div class="max-w-screen-xl mx-auto px-4 py-4">
+<nav class="fixed top-0 w-full z-50 bg-gray-800 border-gray-400">
+  <div class="max-w-screen-2xl mx-auto px-14 py-4">
+    <div class="flex justify-around items-center flex-wrap">
 
-    <div class="flex justify-between items-center flex-wrap">
-      <ul class="flex flex-col p-4 mt-4 md:flex-row md:space-x-8 md:mt-0 md:p-0 font-medium bg-gray-800 md:bg-transparent">
+
+      <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:p-0 font-medium items-center">
         <li>
-          <%= link_to "Employees", employees_path, class: "py-2 px-3 text-white bg-blue-700 rounded hover:bg-blue-800 md:bg-transparent md:text-blue-300 md:hover:text-blue-500 md:p-0", aria: { current: "page" } %>
+          <div class="flex items-center">
+            <%= link_to image_tag('united_states.png', alt: 'English'),
+                        url_for(request.params.merge(locale: "en")),
+                        class: "transition duration-500 hover:scale-125",
+                        aria: { current: "page" } %>
+            <%= link_to image_tag('brazil_icon.png', alt: 'Português'),
+                        url_for(request.params.merge(locale: "pt-BR")),
+                        class: "transition duration-500 hover:scale-125",
+                        aria: { current: "page" } %>
+
+          </div>
         </li>
         <li>
-          <%= link_to "English", url_for(locale: "en"), class: "py-2 px-3 text-white bg-blue-700 rounded hover:bg-blue-800 md:bg-transparent md:text-blue-300 md:hover:text-blue-500 md:p-0", aria: { current: "page" } %>
-        </li>
-        <li>
-          <%= link_to "Português", url_for(locale: "pt-BR"), class: "py-2 px-3 text-white bg-blue-700 rounded hover:bg-blue-800 md:bg-transparent md:text-blue-300 md:hover:text-blue-500 md:p-0", aria: { current: "page" } %>
+          <%= link_to I18n.t(:employees), employees_path, class: "py-2 px-3 text-white bg-blue-700 rounded hover:bg-blue-800 md:bg-transparent md:text-blue-300 md:hover:text-blue-500 md:p-0", aria: { current: "page" } %>
         </li>
         <li>
           <%= link_to I18n.t(:add_employee), new_employee_path, class: "py-2 px-3 text-white bg-blue-700 rounded hover:bg-blue-800 md:bg-transparent md:text-blue-300 md:hover:text-blue-500 md:p-0", aria: { current: "page" } %>
         </li>
       </ul>
 
-      <div class="flex flex-col w-full md:w-2/3 lg:w-1/2 xl:w-1/3">
+      <div class="flex flex-col w-full md:w-2/3 lg:w-1/2 xl:w-1/3 justify-end">
         <%= search_form_for @ransack_employees, url: employees_path(locale: I18n.locale), html: { method: :get } do |f| %>
           <div class="relative w-full">
-            <%= f.search_field :first_name_or_last_name_cont, id: "q_first_name_or_last_name_cont", class: "rounded-lg block w-full p-2 pl-10 text-sm text-gray-900 bg-gray-700 border border-gray-600 rounded-l-md focus:ring-blue-500 focus:border-blue-500 dark:placeholder-gray-400 dark:text-white", autocomplete: "off", placeholder: "Search Employees..." %>
-            <button type="submit" class="absolute right-0 top-0 bottom-0 px-4 py-2 text-sm text-white bg-blue-700 rounded-r-md hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">Search</button>
+            <%= f.search_field :first_name_or_last_name_cont, id: "q_first_name_or_last_name_or_full_name_cont", class: "rounded-lg block w-full p-2 pl-10 text-sm text-gray-900 bg-gray-700 border border-gray-600 rounded-l-md focus:ring-blue-500 focus:border-blue-500 dark:placeholder-gray-400 dark:text-white", autocomplete: "off", placeholder: I18n.t(:search_employees) %>
+            <button type="submit" class="absolute right-0 top-0 bottom-0 px-4 py-2 text-sm text-white bg-blue-700 rounded-r-md hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"><%= I18n.t(:search) %></button>
           </div>
           <div class="mt-2 grid grid-cols-1 gap-2 md:grid-cols-2">
             <div>
               <%= f.select :department_eq,
-                           Employee.departments.keys.map { |key| [I18n.t("activerecord.attributes.employee.departments.#{key}"), key] },
-                           { include_blank: 'Any Department' },
+                           Employee.departments.keys.map { |key| [I18n.t("activerecord.attributes.employee.departments.#{key}"), Employee.departments[key]] },
+                           { include_blank: I18n.t(:any_department) },
                            { class: "block w-full bg-gray-700 border border-gray-600 text-white rounded-md text-sm p-2" } %>
             </div>
             <div>
               <%= f.select :role_eq,
-                           Employee.roles.keys.map { |key| [I18n.t("activerecord.attributes.employee.roles.#{key}"), key] },
-                           { include_blank: 'Any Role' },
+                           Employee.roles.keys.map { |key| [I18n.t("activerecord.attributes.employee.roles.#{key}"), Employee.roles[key]] },
+                           { include_blank: I18n.t(:any_role) },
                            { class: "block w-full bg-gray-700 border border-gray-600 text-white rounded-md text-sm p-2" } %>
             </div>
           </div>
         <% end %>
       </div>
     </div>
-
   </div>
 </nav>

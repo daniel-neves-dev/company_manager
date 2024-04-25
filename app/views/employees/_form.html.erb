@@ -1,18 +1,19 @@
-<%= simple_form_for(@employee, html: { class: 'bg-gray-800 p-10 rounded-lg mx-auto' }) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for(@employee, html: { class: 'bg-gray-800 p-10 rounded-lg mx-auto mt-32' }) do |f| %>
 
-  <fieldset class="my-6">
+  <fieldset>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
       <div>
         <%= f.input :first_name,
                     label_html: { class: "text-gray-300 mb-2" },
                     input_html: { class: "form-input bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-lg" },
+                    error_html: { class: "text-red-500 text-sm" },
                     wrapper: false %>
       </div>
       <div>
         <%= f.input :last_name,
                     label_html: { class: "text-gray-300 mb-2" },
                     input_html: { class: "form-input bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-lg" },
+                    error_html: { class: "text-red-500 text-sm" },
                     wrapper: false %>
       </div>
     </div>
@@ -23,6 +24,7 @@
                     collection: Employee.departments.keys.map { |department| [I18n.t("activerecord.attributes.employee.departments.#{department}"), department] },
                     label_html: { class: "text-gray-300 mb-2" },
                     input_html: { class: "form-select bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-lg" },
+                    error_html: { class: "text-red-500 text-sm" },
                     wrapper: false,
                     prompt: I18n.t(:'labels.prompts.defaults.department') %>
       </div>
@@ -31,6 +33,7 @@
                     collection: Employee.roles.keys.map { |role| [I18n.t("activerecord.attributes.employee.roles.#{role}"), role] },
                     label_html: { class: "text-gray-300 mb-2" },
                     input_html: { class: "form-select bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-lg" },
+                    error_html: { class: "text-red-500 text-sm" },
                     wrapper: false,
                     prompt: I18n.t(:'labels.prompts.defaults.role') %>
       </div>
@@ -44,7 +47,7 @@
     </div>
       <div>
         <% if @employee.persisted? %>
-          <div class="grid grid-cols-1 gap-4 mb-4">
+          <div class="grid grid-cols-1  mt-4">
             <%= f.input :status,
                         collection: Employee.statuses.keys.map { |status| [I18n.t("activerecord.attributes.employee.statuses.#{status}"), status] },
                         label_html: { class: "text-gray-300 mb-2" },
@@ -56,9 +59,9 @@
     <% end %>
 
     <div class="mt-6">
-      <label class="block text-gray-300 mb-2">Photo</label>
+      <label class="block text-gray-300 mb-2"><%= I18n.t(:photo) %></label>
       <label class="flex items-center justify-center bg-gray-700 text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-700 hover:text-white px-4 py-6 w-full">
-        <span class="text-gray-300">Select a photo</span>
+        <span class="text-gray-300"><%= I18n.t(:select_photo) %></span>
         <%= f.file_field :photo, class: "hidden" %>
       </label>
     </div>

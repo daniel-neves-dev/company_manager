@@ -1,8 +1,8 @@
 # db/seeds.rb
 
-male_names = %w[James John Robert Michael William Peter]
+male_names = %w[James John Robert Michael William Peter Fernando]
 male_last_names = %w[Andrade Silva Rodrigues Miller Hernandes Walker]
-female_names = %w[Mary Patricia Jennifer Linda Elizabeth Luiza]
+female_names = %w[Mary Patricia Jennifer Linda Elizabeth Luiza Jane Luana]
 female_last_names = %w[Andrade Silva Rodrigues Miller Hernandes Walker Watson]
 
 departments = Employee.departments.keys

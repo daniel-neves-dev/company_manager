@@ -2,9 +2,8 @@
   <div class="w-full ">
     <h1><%= I18n.t(:edit_employee) %></h1>
     <%= render "form", employee: @employee %>
-    <br>
     <div>
-      <%= link_to I18n.t(:back), employees_path %>
+      <%= link_to I18n.t(:back), employee_path(@employee) %>
     </div>
   </div>
 </div>
