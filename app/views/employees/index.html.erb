@@ -12,7 +12,7 @@
           <% end %>
           <div>
             <%= link_to employee.full_name, employee_path(employee), class: "text-lg font-medium" %>
-            <div class="text-gray-400"><%= employee.department %></div>
+            <div class="text-gray-400"><%= I18n.t("activerecord.attributes.employee.departments.#{employee.department}") %></div>
           </div>
         </div>
       <% end %>

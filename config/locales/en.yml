@@ -16,6 +16,12 @@ en:
   edit: 'Edit'
   delete: 'Delete'
   confirmation_delete: 'Delete Employee?'
+  any_department: 'Any department'
+  any_role: 'Any role'
+  photo: 'Photo'
+  select_photo: 'Select a photo'
+  search: 'Search'
+  search_employees: 'Search Employees...'
 
   activerecord:
     attributes:
