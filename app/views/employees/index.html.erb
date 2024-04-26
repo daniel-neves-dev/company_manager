@@ -1,21 +1,36 @@
-<div class="bg-gray-800 text-white max-w-screen mx-auto">
-  <p class="text-green-500 p-4"><%= notice %></p>
+<div class="bg-gray-800 text-white max-w-screen mx-auto mt-32">
 
-  <h1 class="text-3xl font-semibold text-center py-5"><%= I18n.t(:employees) %></h1>
-
-  <div class="container mx-auto px-14 max-w-4xl">
-    <div id="employees" class="grid md:grid-cols-2 gap-4">
-      <% @employees.each do |employee| %>
-        <div class="flex items-center space-x-4 bg-gray-900 p-4 rounded-lg">
-          <% if employee.photo.attached? %>
-            <%= image_tag(employee.photo, alt: employee.full_name, class: "rounded-full w-16 h-16 object-cover") %>
-          <% end %>
-          <div>
-            <%= link_to employee.full_name, employee_path(employee), class: "text-lg font-medium" %>
-            <div class="text-gray-400"><%= I18n.t("activerecord.attributes.employee.departments.#{employee.department}") %></div>
-          </div>
+  <% if flash[:notice].present? %>
+    <div data-controller="delete" data-delete-target="delete" id="delete" class="bg-teal-100 border-t-4 border-teal-500 rounded text-teal-900 px-4 py-3 shadow-md mx-auto my-6 max-w-lg transition-opacity opacity-100" role="delete">
+      <div class="flex items-center">
+        <div class="py-1">
+          <svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414 0L10 10.586 7.707 8.293a1 1 0 00-1.414 1.414l3 3a1 1 0 006.414-6.414z"/></svg>
         </div>
-      <% end %>
+        <div class="flex-grow">
+          <p class="font-bold">Success!</p>
+          <p class="text-sm"><%= flash[:notice] %></p>
+        </div>
+      </div>
     </div>
-  </div>
+  <% end %>
+
+    <div class=" container mx-auto px-14 max-w-4xl">
+      <h1 class="text-3xl font-semibold text-center py-12"><%= I18n.t(:employees) %></h1>
+      <div id="employees" class="grid md:grid-cols-2 gap-4">
+        <% @employees.each do |employee| %>
+          <div class="flex items-center space-x-4 bg-gray-900 p-4 rounded-lg">
+            <% if employee.photo.attached? %>
+              <%= image_tag(employee.photo, alt: employee.full_name, class: "rounded-full w-16 h-16 object-cover") %>
+            <% else %>
+              <p class="rounded-full w-16 h-16 object-cover bg-gray-400" ></p>
+            <% end %>
+
+            <div>
+              <%= link_to employee.full_name, employee_path(employee), class: "text-lg font-medium" %>
+              <div class="text-gray-400"><%= I18n.t("activerecord.attributes.employee.departments.#{employee.department}") %></div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
 </div>
