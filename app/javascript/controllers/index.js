@@ -12,3 +12,6 @@ application.register("delete", DeleteController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import PhotoPreviewController from "./photo_preview_controller"
+application.register("photo-preview", PhotoPreviewController)
