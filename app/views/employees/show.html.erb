@@ -1,4 +1,4 @@
-<div class="bg-gray-800 text-white min-h-screen mt-32">
+<div data-controller="show-page-animation" class="bg-gray-800 text-white min-h-screen mt-32 ">
   <div class=" mx-auto px-4 fixed items-center w-full ">
 
     <div data-controller="alert">
@@ -18,7 +18,7 @@
         </div>
       <% end %>
 
-      <div data-alert-target="photoCard" id="photo-card" class="bg-gray-900 rounded-lg overflow-hidden shadow-lg max-w-2xl mx-auto mt-16 transition-all duration-1000">
+      <div data-show-page-animation-target="photoCard" data-alert-target="photoCard" id="photo-card" class="bg-gray-900 rounded-lg overflow-hidden shadow-lg max-w-2xl mx-auto mt-16 transition-all duration-1000">
         <div class="flex flex-col md:flex-row">
           <% if @employee&.persisted? && @employee.photo.attached? %>
             <div class="md:w-1/3">
