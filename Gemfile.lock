@@ -286,6 +286,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activestorage
   bootsnap
   capybara
   database_cleaner-active_record

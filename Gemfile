@@ -76,3 +76,4 @@ gem "tailwindcss-rails", "~> 2.4"
 gem 'ransack'
 gem 'simple_form_ransack'
 gem 'font-awesome-rails'
+gem 'activestorage'
