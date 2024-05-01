@@ -48,7 +48,7 @@
                 <%= content_tag(:i, '', class: "fa fa-pencil fa-2x") %>
               <% end %>
 
-              <%= button_to @employee, method: :delete, data: { turbo_confirm: I18n.t(:confirmation_delete) }, class: "text-red-600 hover:text-red-800" do %>
+              <%= button_to @employee, method: :delete, data: { turbo_confirm: I18n.t(:confirmation_delete) }, class: "text-red-600 hover:text-red-800"  do %>
                 <%= content_tag(:i, '', class: "fa-regular fa-trash-can fa-2x") %>
               <% end %>
             </div>
