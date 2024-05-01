@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    min-width: 480px; /* Set to the minimum width you desire */
+}
 
 /* index page animation*/
 .fade-in-start {
@@ -15,7 +18,6 @@
     transform: translateY(0);
     transition-delay: 0.5s;
 }
-/* index page animation*/
 
 /* ----------- */
 
@@ -34,4 +36,4 @@
     transform: translateY(0);
 }
 
-/* show page animation*/
+/* ----------- */
