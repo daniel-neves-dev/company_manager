@@ -21,9 +21,10 @@ module.exports = {
       },
       screens:{
         sm:'480px',
-        md:'768px',
-        lg:'976',
-        xl:'1440px',
+        md:'640px',
+        lg:'1000',
+        xl:'1024px',
+        '2xl':'1440px',
       },
     },
   },

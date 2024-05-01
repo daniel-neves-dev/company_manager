@@ -1,11 +1,12 @@
-<nav class="fixed top-0 w-full z-50 bg-gray-800 border-gray-400">
+<nav class="fixed top-0 w-full z-50 bg-gray-800 ">
   <div class="max-w-screen-2xl mx-auto px-14 py-4">
-    <div class="flex justify-around items-center flex-wrap">
+    <div class="flex justify-around items-center flex-wrap ">
 
-      <ul class="sm:hidden md:flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:p-0 font-medium items-center md:py-4">
-        <li>
-          <%= render 'layouts/change_language' %>
-        </li>
+    <div class="hidden md:flex md:flex-row">
+      <%= render 'layouts/change_language' %>
+    </div>
+
+      <ul class="hidden md:flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:p-0 font-medium items-center md:py-4">
         <li>
           <%= link_to I18n.t(:employees), employees_path, class: "py-2 px-3 text-white bg-blue-700 rounded hover:bg-blue-800 md:bg-transparent md:text-blue-300 md:hover:text-blue-500 md:p-0", aria: { current: "page" } %>
         </li>
