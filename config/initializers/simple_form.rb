@@ -10,8 +10,8 @@ SimpleForm.setup do |config|
     b.use :placeholder
 
     # Use each input component only once
-    b.use :label, class: "block text-gray-700 text-sm font-bold mb-2"
-    b.use :input, class: "form-input mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+    b.use :label, class: "text-gray-800 text-lg mb-2 w-full"
+    b.use :input, class: "bg-gray-50 border-gray-600 text-gray-800 placeholder-gray-800 rounded-lg w-full"
     b.use :error, wrap_with: { tag: 'span', class: 'text-red-500' }
     b.use :hint,  wrap_with: { tag: 'span', class: 'text-gray-600' }
 

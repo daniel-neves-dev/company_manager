@@ -1,9 +1,9 @@
-<div class="justify-center items-center max-w-2xl mx-auto mt-48">
-  <div class="w-full flex px-6">
-    <%= link_to employee_path(@employee), class: "text-yellow-400 hover:text-yellow-600 px-6" do %>
+<div class="justify-center items-center max-w-2xl mx-auto mt-20">
+  <div class="w-full flex">
+    <%= link_to employee_path(@employee), class: "text-yellow-400 hover:text-yellow-600 px-2" do %>
       <%= content_tag(:i, '', class: "fa-solid fa-circle-arrow-left fa-2x") %>
     <% end %>
-    <h1 class="text-stone-400 text-clip text-3xl px-4"><%= I18n.t(:edit_employee) %></h1>
+    <h1><%= I18n.t(:edit_employee) %></h1>
   </div>
 
   <div class="flex justify-center items-center max-w-2xl mx-auto">

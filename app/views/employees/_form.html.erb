@@ -1,59 +1,42 @@
-<%= simple_form_for(@employee, html: { class: 'bg-gray-800 p-10 rounded-lg mx-auto',
+<%= simple_form_for(@employee, html: { class: 'bg-transparent p-10 rounded-lg mx-auto border border-middleblue',
                                        data: { controller: 'photo-preview', photo_preview_target: 'form' } }) do |f| %>
 
   <fieldset>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
       <div>
         <%= f.input :first_name,
-                    label_html: { class: "text-gray-300 mb-2" },
-                    input_html: { class: "form-input bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-lg" },
-                    error_html: { class: "text-red-500 text-sm" },
-                    wrapper: false %>
+                    error_html: { class: "text-red-500 text-sm" }%>
       </div>
       <div>
         <%= f.input :last_name,
-                    label_html: { class: "text-gray-300 mb-2" },
-                    input_html: { class: "form-input bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-lg" },
-                    error_html: { class: "text-red-500 text-sm" },
-                    wrapper: false %>
+                    error_html: { class: "text-red-500 text-sm" }%>
       </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
       <div>
         <%= f.input :department,
-                    collection: Employee.departments.keys.map { |department| [I18n.t("activerecord.attributes.employee.departments.#{department}"), department] },
-                    label_html: { class: "text-gray-300 mb-2" },
-                    input_html: { class: "form-select bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-lg" },
                     error_html: { class: "text-red-500 text-sm" },
-                    wrapper: false,
+                    collection: Employee.departments.keys.map { |department| [I18n.t("activerecord.attributes.employee.departments.#{department}"), department] },
                     prompt: I18n.t(:'labels.prompts.defaults.department') %>
       </div>
       <div>
         <%= f.input :role,
-                    collection: Employee.roles.keys.map { |role| [I18n.t("activerecord.attributes.employee.roles.#{role}"), role] },
-                    label_html: { class: "text-gray-300 mb-2" },
-                    input_html: { class: "form-select bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-lg" },
                     error_html: { class: "text-red-500 text-sm" },
-                    wrapper: false,
+                    collection: Employee.roles.keys.map { |role| [I18n.t("activerecord.attributes.employee.roles.#{role}"), role] },
                     prompt: I18n.t(:'labels.prompts.defaults.role') %>
       </div>
     </div>
 
     <div>
       <%= f.input :email,
-                  label_html: { class: "text-gray-300 mb-2" },
-                  input_html: { class: "form-input bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-lg" },
-                  wrapper: false %>
+                  error_html: { class: "text-red-500 text-sm" }%>
     </div>
     <div>
       <% if @employee.persisted? %>
         <div class="grid grid-cols-1  mt-4">
-          <%= f.input :status,
+          <%= f.input :status, error_html: { class: "text-red-500 text-sm" },
                       collection: Employee.statuses.keys.map { |status| [I18n.t("activerecord.attributes.employee.statuses.#{status}"), status] },
-                      label_html: { class: "text-gray-300 mb-2" },
-                      input_html: { class: "form-select bg-gray-700 border-gray-600 text-white placeholder-gray-400 rounded-lg" },
-                      wrapper: false,
                       prompt: I18n.t(:'labels.prompts.defaults.status') %>
         </div>
         </div>
@@ -68,7 +51,7 @@
                  class="<%= 'hidden' unless @employee.photo.attached? %>"/>
             <span class="text-gray-300 text-sm hidden" data-photo-preview-target="placeholder">No image selected</span>
           </div>
-          <label class="block text-gray-300 mb-2"><%= I18n.t(:photo) %></label>
+          <label class="text-gray-800 text-lg mb-2 w-full"><%= I18n.t(:photo) %></label>
           <label class="flex items-center justify-center bg-blue-500 text-white rounded-lg shadow-lg tracking-wide uppercase border
             border-blue cursor-pointer hover:bg-blue-700 px-4 py-2 w-full">
             <%= I18n.t(:select_photo) %>
@@ -76,7 +59,7 @@
           </label>
 
           <div class="mt-6">
-            <%= f.button :submit, class: "w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" %>
+            <%= f.button :submit, class: "button-submit" %>
           </div>
         </div>
       </div>
