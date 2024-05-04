@@ -1,11 +1,9 @@
-<div class="flex items-center justify-between">
-  <%= link_to image_tag('united_states.png', alt: 'English'),
-              url_for(request.params.merge(locale: "en")),
-              class: "transition duration-500 hover:scale-125",
-              aria: { current: "page" } %>
-  <%= link_to image_tag('brazil_icon.png', alt: 'Português'),
-              url_for(request.params.merge(locale: "pt-BR")),
-              class: "transition duration-500 hover:scale-125",
-              aria: { current: "page" } %>
+<%= link_to image_tag('united_states.png', alt: 'English'),
+            url_for(request.params.merge(locale: "en")),
+            class: "transition duration-500 hover:scale-125",
+            aria: { current: "page" } %>
+<%= link_to image_tag('brazil_icon.png', alt: 'Português'),
+            url_for(request.params.merge(locale: "pt-BR")),
+            class: "transition duration-500 hover:scale-125",
+            aria: { current: "page" } %>
 
-</div>

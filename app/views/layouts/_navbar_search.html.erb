@@ -1,22 +1,20 @@
-<div class="hidden md:flex flex-col md:w-2/3 lg:w-1/2 xl:w-1/3 justify-end">
-  <%= search_form_for @ransack_employees, url: employees_path(locale: I18n.locale), html: { method: :get } do |f| %>
-    <div class="relative w-full">
-      <%= f.search_field :first_name_or_last_name_cont, id: "q_first_name_or_last_name_or_full_name_cont", class: "rounded-lg block w-full p-2 pl-10 text-sm text-gray-900 bg-gray-700 border border-gray-600 rounded-l-md focus:ring-blue-500 focus:border-blue-500 dark:placeholder-gray-400 dark:text-white", autocomplete: "off", placeholder: I18n.t(:search_employees) %>
-      <button type="submit" class="absolute right-0 top-0 bottom-0 px-4 py-2 text-sm text-white bg-blue-700 rounded-r-md hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"><%= I18n.t(:search) %></button>
+<%= search_form_for @ransack_employees, url: employees_path(locale: I18n.locale), html: { method: :get } do |f| %>
+  <div class="relative w-full">
+    <%= f.search_field :first_name_or_last_name_cont, id: "q_first_name_or_last_name_or_full_name_cont", class: "rounded-lg block w-full p-2 pl-10 text-sm text-gray-900 bg-gray-700 border border-gray-600 rounded-l-md focus:ring-blue-500 focus:border-blue-500 dark:placeholder-gray-400 dark:text-white", autocomplete: "off", placeholder: I18n.t(:search_employees) %>
+    <button type="submit" class="absolute right-0 top-0 bottom-0 px-4 py-2 text-sm text-white bg-blue-700 rounded-r-md hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"><%= I18n.t(:search) %></button>
+  </div>
+  <div class="mt-2 grid grid-cols-1 gap-2 md:grid-cols-2">
+    <div>
+      <%= f.select :department_eq,
+                   Employee.departments.keys.map { |key| [I18n.t("activerecord.attributes.employee.departments.#{key}"), Employee.departments[key]] },
+                   { include_blank: I18n.t(:any_department) },
+                   { class: "block w-full bg-gray-700 border border-gray-600 text-white rounded-md text-sm p-2" } %>
     </div>
-    <div class="mt-2 grid grid-cols-1 gap-2 md:grid-cols-2">
-      <div>
-        <%= f.select :department_eq,
-                     Employee.departments.keys.map { |key| [I18n.t("activerecord.attributes.employee.departments.#{key}"), Employee.departments[key]] },
-                     { include_blank: I18n.t(:any_department) },
-                     { class: "block w-full bg-gray-700 border border-gray-600 text-white rounded-md text-sm p-2" } %>
-      </div>
-      <div>
-        <%= f.select :role_eq,
-                     Employee.roles.keys.map { |key| [I18n.t("activerecord.attributes.employee.roles.#{key}"), Employee.roles[key]] },
-                     { include_blank: I18n.t(:any_role) },
-                     { class: "block w-full bg-gray-700 border border-gray-600 text-white rounded-md text-sm p-2" } %>
-      </div>
+    <div>
+      <%= f.select :role_eq,
+                   Employee.roles.keys.map { |key| [I18n.t("activerecord.attributes.employee.roles.#{key}"), Employee.roles[key]] },
+                   { include_blank: I18n.t(:any_role) },
+                   { class: "block w-full bg-gray-700 border border-gray-600 text-white rounded-md text-sm p-2" } %>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
