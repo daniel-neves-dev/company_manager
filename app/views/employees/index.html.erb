@@ -1,4 +1,4 @@
-<div class="bg-gray-800 text-white max-w-screen mx-auto">
+<div class="bg-gray-800 text-white max-w-screen mx-auto bg-transparent">
 
   <% if flash[:notice].present? %>
     <div data-controller="delete" data-delete-target="delete" id="delete" class="bg-teal-100 border-t-4 border-teal-500 rounded text-teal-900 px-4 py-3 shadow-md mx-auto my-6 max-w-lg transition-opacity opacity-100" role="delete">
@@ -18,7 +18,7 @@
       <h1 class="text-3xl font-semibold text-center py-12"><%= I18n.t(:employees) %></h1>
       <div data-controller="index-animation" id="employees" class="grid md:grid-cols-2 gap-4">
         <% @employees.each do |employee| %>
-          <div data-index-animation-target="employeeCard" class="employee-card fade-in-start flex items-center space-x-4 bg-gray-900 p-4 rounded-lg">
+          <div data-index-animation-target="employeeCard" class="employee-card fade-in-start flex items-center space-x-4 bg-middleblue hover:shadow-lg hover:shadow-blueshadown p-4 rounded-lg">
             <% if employee.photo.attached? %>
               <%= image_tag(employee.photo, alt: employee.full_name, class: "rounded-full w-16 h-16 object-cover") %>
             <% else %>

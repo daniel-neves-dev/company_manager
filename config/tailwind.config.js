@@ -27,6 +27,14 @@ module.exports = {
         '2xl':'1440px',
       },
     },
+    colors: {
+      blueshadown:'#0D65D9',
+      main:'#1E6FD9',
+      middleblue:'#5C9DF2',
+      lightgray:'#F2F2F2',
+      darkgray:'#2C2C33',
+      lightblue:'#94BDF2',
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),
