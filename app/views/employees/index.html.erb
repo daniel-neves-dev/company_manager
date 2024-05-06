@@ -1,7 +1,8 @@
 <div class="max-w-screen mx-auto bg-transparent">
 
   <% if flash[:notice].present? %>
-    <div data-controller="delete" data-delete-target="delete" id="delete" class="bg-teal-100 border-t-4 border-teal-500 rounded text-teal-900 px-4 py-3 shadow-md mx-auto my-6 max-w-lg transition-opacity opacity-100" role="delete">
+    <div data-controller="delete" data-delete-target="delete" id="delete"
+         class="alert fade-in-start mt-32 bg-teal-100 border-t-4 border-teal-500 rounded text-teal-900 px-4 py-3 shadow-md mx-auto my-6 max-w-lg transition-opacity opacity-100" role="alert">
       <div class="flex items-center">
         <div class="py-1">
           <svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414 0L10 10.586 7.707 8.293a1 1 0 00-1.414 1.414l3 3a1 1 0 006.414-6.414z"/></svg>
@@ -18,11 +19,12 @@
       <h1 class="py-6"><%= I18n.t(:employees) %></h1>
       <div data-controller="index-animation" id="employees" class="grid md:grid-cols-2 gap-4">
         <% @employees.each do |employee| %>
-          <div data-index-animation-target="employeeCard" class=" text-white employee-card fade-in-start flex items-center space-x-4 bg-main hover:shadow-lg hover:shadow-blueshadown p-4 rounded-lg">
+          <div data-index-animation-target="employeeCard" class=" text-white employee-card fade-in-start flex items-center space-x-4 bg-main hover:shadow-lg hover:shadow-blueshadown p-4 rounded-lg
+            dark:bg-gray-700 dark:hover:shadow-lightgray">
             <% if employee.photo.attached? %>
               <%= image_tag(employee.photo, alt: employee.full_name, class: "rounded-full w-16 h-16 object-cover") %>
             <% else %>
-              <p class="rounded-full w-16 h-16 object-cover bg-gray-400" ></p>
+              <p class="rounded-full w-16 h-16 object-cover bg-gray-700" ></p>
             <% end %>
             <div>
               <%= link_to employee.full_name, employee_path(employee), class: "text-lg font-medium" %>

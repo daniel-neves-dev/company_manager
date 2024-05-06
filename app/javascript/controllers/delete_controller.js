@@ -13,13 +13,16 @@ export default class extends Controller {
   fadeOut() {
     const deleteElement = this.deleteTarget;
     if (deleteElement) {
+      deleteElement.classList.add('opacity-0', 'translate-y-4')
       deleteElement.style.transition = 'opacity 1s ease-in-out';
       deleteElement.style.opacity = '0';
 
       // Remove the element from the DOM after the transition
       setTimeout(() => {
-        deleteElement.remove();
-      }, 1000); // Duration of the fade out, must match the CSS transition
+        deleteElement.addEventListener('transitionend', () => {
+          deleteElement.remove();
+        });
+      }, 1000);
     }
   }
 }
