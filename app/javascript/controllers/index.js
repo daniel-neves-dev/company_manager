@@ -7,6 +7,9 @@ import { application } from "./application"
 import AlertController from "./alert_controller"
 application.register("alert", AlertController)
 
+import DarkButtonController from "./dark_button_controller"
+application.register("dark-button", DarkButtonController)
+
 import DeleteController from "./delete_controller"
 application.register("delete", DeleteController)
 
