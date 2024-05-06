@@ -31,7 +31,7 @@ pt-BR:
     submit:
       employee:
         create: "Adicionar %{model}"
-        update: "Salvar Mudanças"
+        update: "Salvar Alterações"
   activerecord:
     models:
       employee: "Funcionário"

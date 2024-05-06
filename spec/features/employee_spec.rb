@@ -61,13 +61,16 @@ RSpec.describe 'Employee navigation', type: :feature do
   end
 
   describe 'delete', type: :feature, js: true do
-    it 'deletes the employee'do
+    it 'deletes the employee' do
       visit employee_path(employee, locale: I18n.locale)
+      expect(page).to have_content(employee.first_name)  # Verify that the content is present before deletion
+
       page.accept_confirm do
-        click_on('Delete', match: :first)
+        find('.fa-regular.fa-trash-can.fa-2x').click  # Correct selector for Font Awesome icon
       end
-      expect(page).not_to have_content(employee.first_name)
-      expect(Employee.exists?(employee.id)).to be_falsey
+
+      expect(page).not_to have_content(employee.first_name)  # Content should no longer be visible
+      expect(Employee.exists?(employee.id)).to be_falsey  # The record should not exist
     end
   end
 

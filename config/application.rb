@@ -38,5 +38,9 @@ module CompanyManager
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.i18n.available_locales = ['pt-BR', :en]
+
+    config.i18n.load_path += SimpleFormRansack.locale_files
   end
 end

@@ -16,6 +16,12 @@ pt-BR:
   edit: 'Editar'
   delete: 'Deletar'
   confirmation_delete: 'Deletar funcionário?'
+  any_department: 'Qualquer departamento'
+  any_role: 'Qualquer cargo'
+  photo: 'Foto'
+  select_photo: 'Selecione uma foto'
+  search: 'Buscar'
+  search_employees: 'Buscar Funcionários...'
 
   activerecord:
     attributes:

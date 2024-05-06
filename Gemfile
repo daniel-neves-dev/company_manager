@@ -72,3 +72,8 @@ end
 gem 'simple_form'
 gem 'i18n'
 gem 'mini_magick'
+gem "tailwindcss-rails", "~> 2.4"
+gem 'ransack'
+gem 'simple_form_ransack'
+gem 'font-awesome-rails'
+gem 'activestorage'

@@ -1,9 +1,12 @@
-<h1><%= I18n.t(:edit_employee) %></h1>
+<div class="justify-center items-center max-w-2xl mx-auto mt-20">
+  <div class="w-full flex">
+    <%= link_to employee_path(@employee), class: "text-yellow-400 hover:text-yellow-600 px-2" do %>
+      <%= content_tag(:i, '', class: "fa-solid fa-circle-arrow-left fa-2x") %>
+    <% end %>
+    <h1><%= I18n.t(:edit_employee) %></h1>
+  </div>
 
-<%= render "form", employee: @employee %>
-
-<br>
-
-<div>
-  <%= link_to I18n.t(:back), employees_path %>
+  <div class="flex justify-center items-center max-w-2xl mx-auto">
+      <%= render "form", employee: @employee %>
+  </div>
 </div>
