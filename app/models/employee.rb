@@ -1,7 +1,9 @@
 class Employee < ApplicationRecord
   before_create :generate_employee_id
   after_initialize :set_default_status, if: :new_record?
+  before_validation :normalize_email
 
+  has_one_attached :photo
   validates :first_name, :last_name, :department, :role, :status, presence: true
 
   enum department: {human_resource:0, information_technology:1, finance:2, sales:3, operations:4}
@@ -10,7 +12,7 @@ class Employee < ApplicationRecord
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validates :email, uniqueness: { case_sensitive: false },
+  validates :email, allow_blank: true, allow_nil: true, uniqueness: { case_sensitive: false },
             format: { with: VALID_EMAIL_REGEX, message: :email_format }
 
   def full_name
@@ -18,6 +20,9 @@ class Employee < ApplicationRecord
   end
 
   private
+  def normalize_email
+    self.email = email.blank? ? nil : email
+  end
   def set_default_status
     self.status ||= :active
   end

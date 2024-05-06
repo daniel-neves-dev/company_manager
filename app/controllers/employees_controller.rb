@@ -17,6 +17,7 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
+    @employee.email = nil if @employee.email.blank?
 
     respond_to do |format|
       if @employee.save
@@ -28,6 +29,7 @@ class EmployeesController < ApplicationController
   end
 
   def update
+    @employee.email = nil if @employee.email.blank?
     respond_to do |format|
       if @employee.update(employee_params)
         format.html { redirect_to employee_url(@employee),notice:  I18n.t(:update_employee) }
@@ -53,6 +55,6 @@ class EmployeesController < ApplicationController
     end
 
     def employee_params
-      params.require(:employee).permit(:first_name, :last_name, :employee_id, :department, :role, :status, :email)
+      params.require(:employee).permit(:first_name, :last_name, :employee_id, :department, :role, :status, :email, :photo)
     end
 end
