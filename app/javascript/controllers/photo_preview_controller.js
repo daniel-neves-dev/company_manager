@@ -5,13 +5,12 @@ export default class extends Controller {
   static targets = ["input", "preview", "image", "placeholder"]
 
   connect() {
-    // Set up the preview based on session storage or existing photo
+    // Set a unique temporary ID for new employee forms, if not already set.
+    if (!this.imageTarget.dataset.employeeId || this.imageTarget.dataset.employeeId.startsWith('new-')) {
+      this.imageTarget.dataset.employeeId = `new-${Date.now()}`;
+    }
+    // Retrieve and display any existing photo preview from session storage or existing photo.
     this.retrieveImagePreview();
-
-    // Clean up the session storage when the form is submitted
-    this.element.addEventListener('submit', () => {
-      sessionStorage.removeItem(this.sessionStorageKey());
-    });
   }
 
   // When the file input changes, handle the image preview
@@ -21,6 +20,7 @@ export default class extends Controller {
       const reader = new FileReader();
       reader.onloadend = () => {
         this.displayPreview(reader.result);
+        // Save the image preview in session storage.
         sessionStorage.setItem(this.sessionStorageKey(), reader.result);
       };
       reader.readAsDataURL(file);
@@ -50,7 +50,8 @@ export default class extends Controller {
     const savedImageSrc = sessionStorage.getItem(this.sessionStorageKey());
     if (savedImageSrc) {
       this.displayPreview(savedImageSrc);
-    } else if (this.imageTarget.dataset.existingPhotoUrl) {
+    } else if (this.imageTarget.dataset.existingPhotoUrl && !this.imageTarget.dataset.employeeId.startsWith('new-')) {
+      // Display existing photo only if it's not a new employee form.
       this.displayPreview(this.imageTarget.dataset.existingPhotoUrl);
     } else {
       this.clearPreview();
