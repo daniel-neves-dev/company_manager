@@ -22,6 +22,8 @@ pt-BR:
   select_photo: 'Selecione uma foto'
   search: 'Buscar'
   search_employees: 'Buscar Funcionários...'
+  under_development: 'Em desenvolvimento'
+  home: 'Página Inicial'
 
   activerecord:
     attributes:

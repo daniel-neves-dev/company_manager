@@ -22,6 +22,8 @@ en:
   select_photo: 'Select a photo'
   search: 'Search'
   search_employees: 'Search Employees...'
+  under_development: 'Under development'
+  home: 'Home'
 
   activerecord:
     attributes:
