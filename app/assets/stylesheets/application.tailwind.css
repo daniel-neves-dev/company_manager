@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    min-width: 480px; /* Set to the minimum width you desire */
+}
+
+h1 {
+    @apply text-3xl font-semibold text-center text-blueshadown dark:text-white
+}
+
+.button-submit {
+    @apply w-full bg-middleblue hover:bg-main cursor-pointer text-white font-bold py-2 px-4 rounded-lg
+}
+
+/* index page animation*/
+.fade-in-start {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in-end {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
+}
+
+/* ----------- */
+
+/* show page animation*/
+.opacity-0 {
+    opacity: 0;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+.opacity-100 {
+    opacity: 1;
+}
+.translate-y-4 {
+    transform: translateY(1rem);
+}
+.translate-y-0 {
+    transform: translateY(0);
+}
+
+/* ----------- */
+
+.delete-transition {
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}

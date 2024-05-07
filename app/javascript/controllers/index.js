@@ -4,5 +4,23 @@
 
 import { application } from "./application"
 
+import AlertController from "./alert_controller"
+application.register("alert", AlertController)
+
+import DarkButtonController from "./dark_button_controller"
+application.register("dark-button", DarkButtonController)
+
+import DeleteController from "./delete_controller"
+application.register("delete", DeleteController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import IndexAnimationController from "./index_animation_controller"
+application.register("index-animation", IndexAnimationController)
+
+import PhotoPreviewController from "./photo_preview_controller"
+application.register("photo-preview", PhotoPreviewController)
+
+import ShowPageAnimationController from "./show_page_animation_controller"
+application.register("show-page-animation", ShowPageAnimationController)

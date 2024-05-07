@@ -1,0 +1,67 @@
+<%= simple_form_for(@employee, html: { class: 'bg-transparent p-10 rounded-lg mx-auto border border-middleblue',
+                                       data: { controller: 'photo-preview', photo_preview_target: 'form' } }) do |f| %>
+
+  <fieldset>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+      <div>
+        <%= f.input :first_name,
+                    error_html: { class: "text-red-500 text-sm" }%>
+      </div>
+      <div>
+        <%= f.input :last_name,
+                    error_html: { class: "text-red-500 text-sm" }%>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+      <div>
+        <%= f.input :department,
+                    error_html: { class: "text-red-500 text-sm" },
+                    collection: Employee.departments.keys.map { |department| [I18n.t("activerecord.attributes.employee.departments.#{department}"), department] },
+                    prompt: I18n.t(:'labels.prompts.defaults.department') %>
+      </div>
+      <div>
+        <%= f.input :role,
+                    error_html: { class: "text-red-500 text-sm" },
+                    collection: Employee.roles.keys.map { |role| [I18n.t("activerecord.attributes.employee.roles.#{role}"), role] },
+                    prompt: I18n.t(:'labels.prompts.defaults.role') %>
+      </div>
+    </div>
+
+    <div>
+      <%= f.input :email,
+                  error_html: { class: "text-red-500 text-sm" }%>
+    </div>
+    <div>
+      <% if @employee.persisted? %>
+        <div class="grid grid-cols-1  mt-4">
+          <%= f.input :status, error_html: { class: "text-red-500 text-sm" },
+                      collection: Employee.statuses.keys.map { |status| [I18n.t("activerecord.attributes.employee.statuses.#{status}"), status] },
+                      prompt: I18n.t(:'labels.prompts.defaults.status') %>
+        </div>
+        </div>
+      <% end %>
+
+      <div class="mt-6">
+        <div data-controller="photo-preview">
+          <div data-photo-preview-target="preview" class="w-32 h-auto rounded-lg overflow-hidden mx-auto bg-gray-700 flex items-center justify-center">
+            <img data-photo-preview-target="image"
+                 data-existing-photo-url="<%= @employee.photo.attached? ? url_for(@employee.photo) : nil %>"
+                 data-employee-id="<%= @employee.id %>"
+                 class="<%= 'hidden' unless @employee.photo.attached? %>"/>
+            <span class="text-gray-300 text-sm hidden" data-photo-preview-target="placeholder">No image selected</span>
+          </div>
+          <label class="text-gray-800 text-lg mb-2 w-full"><%= I18n.t(:photo) %></label>
+          <label class="flex items-center justify-center bg-blue-500 text-white rounded-lg shadow-lg tracking-wide uppercase border
+            border-blue cursor-pointer hover:bg-blue-700 px-4 py-2 w-full">
+            <%= I18n.t(:select_photo) %>
+            <%= f.file_field :photo, data: { photo_preview_target: "input", action: "change->photo-preview#previewImage" }, class: "hidden" %>
+          </label>
+
+          <div class="mt-6">
+            <%= f.button :submit, class: "button-submit" %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</fieldset>

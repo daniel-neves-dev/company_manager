@@ -1,31 +1,64 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  create_employee: "Employee successful saved!"
+  update_employee: "Employee successful updated!"
+  delete_employee: "Employee successful deleted!"
+  employees: "Employees"
+  add_employee: "Add Employee"
+  new_employee: "New Employee"
+  edit_employee: "Edit Employee"
+  first_name: 'First Name'
+  last_name: 'Last Name'
+  employee_id: 'ID Number'
+  department: 'Department'
+  role: 'Role'
+  status: 'Status'
+  back: 'Back'
+  edit: 'Edit'
+  delete: 'Delete'
+  confirmation_delete: 'Delete Employee?'
+  any_department: 'Any department'
+  any_role: 'Any role'
+  photo: 'Photo'
+  select_photo: 'Select a photo'
+  search: 'Search'
+  search_employees: 'Search Employees...'
+  under_development: 'Under development'
+  home: 'Home'
+
+  activerecord:
+    attributes:
+      employee:
+        departments:
+          human_resource: "Human Resources"
+          information_technology: "Information Technology"
+          finance: "Finance"
+          sales: "Sales"
+          operations: "Operations"
+        roles:
+          manager: "Manager"
+          senior_specialist: "Senior Specialist"
+          analyst: "Analyst"
+          coordinator: "Coordinator"
+          engineer: "Engineer"
+        statuses:
+          active: "Active"
+          on_leave: "On Leave"
+          resigned: "Resigned"
+          retired: "Retired"
+          under_review: "Under Review"
+    errors:
+      models:
+        employee:
+          attributes:
+            first_name:
+              blank: "Please, enter the first name"
+            last_name:
+              blank: "Please, enter the last name"
+            department:
+              blank: "Please, select a department"
+            role:
+              blank: "Please, select a role"
+            status:
+              blank: "Please, select a status"
+            email:
+              email_format: "Email format is invalid"
