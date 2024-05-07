@@ -14,7 +14,7 @@
   <tr>
     <td>Rails version</td>
     <td>
-      7.0.7
+      7.1.3
     </td>
     <td>
       -
@@ -69,6 +69,9 @@ Open the browser at the address `http://localhost:3000`
 ## About the branches
 
 ```bash
-release/1.0 ([https://github.com/daniel-neves-dev/rails_gems_university/pull/6/files](https://github.com/daniel-neves-dev/company_manager/pull/10/files))
+main
+# final version
+
+release/1.0 (https://github.com/daniel-neves-dev/company_manager/pull/10/files)
 # Human Resources feature
 ```
